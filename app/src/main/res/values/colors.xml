@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#002F5F</color>
+    <color name="colorPrimaryDark">#002F5F</color>
+    <color name="colorAccent">#ED174C</color>
+
+    <color name="amway_blue">#002F5F</color>
+    <color name="amway_red">#D0103A</color>
+    <color name="amway_red_light">#ED174C</color>
 </resources>
