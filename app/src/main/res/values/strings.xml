@@ -2,4 +2,8 @@
     <string name="app_name">Amway Rewards</string>
     <string name="powered_by">Powered By: Eric Sharkey</string>
     <string name="splash_desc">Brand Logo</string>
+    <string name="facebook_app_id">2253975734918804</string>
+    <string name="fb_login_protocol_scheme">fb2253975734918804</string>
+    <string name="login_successful">Login was successful</string>
+    <string name="login_unsuccessful">Login Failed.</string>
 </resources>

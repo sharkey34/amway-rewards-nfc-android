@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "771970645316",
+    "firebase_url": "https://amway-center-rewards.firebaseio.com",
+    "project_id": "amway-center-rewards",
+    "storage_bucket": "amway-center-rewards.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771970645316:android:cf1dcd0ea1a038fa",
+        "android_client_info": {
+          "package_name": "com.example.ericsharkey.amwayrewards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771970645316-k5fh4qc57pc0ihhgotvbm6e7aqkn3ali.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ericsharkey.amwayrewards",
+            "certificate_hash": "a39aa5ee1257134a9e588533992f1cc4a238e889"
+          }
+        },
+        {
+          "client_id": "771970645316-k513ok8e5i4qunddd7lv3ob7jom069c9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQq2YufUOwom4t7s_f5Locol7smkdvtwI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771970645316-k513ok8e5i4qunddd7lv3ob7jom069c9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
