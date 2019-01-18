@@ -6,4 +6,9 @@
     <string name="fb_login_protocol_scheme">fb2253975734918804</string>
     <string name="login_successful">Login was successful</string>
     <string name="login_unsuccessful">Login Failed.</string>
+    <string name="or">Or</string>
+    <string name="email">Email</string>
+    <string name="Password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
 </resources>
