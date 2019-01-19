@@ -18,13 +18,15 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         LoginFragment fragment = (LoginFragment) getSupportFragmentManager().findFragmentByTag(Const.LOGINTAG);
 
-        if(fragment != null){
+         if(fragment != null){
             fragment.onActivityResult(requestCode, resultCode, data);
         }
     }
