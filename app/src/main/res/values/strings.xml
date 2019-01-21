@@ -11,4 +11,5 @@
     <string name="Password">Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="login">Login</string>
+    <string name="event_details">%1$s</string>
 </resources>

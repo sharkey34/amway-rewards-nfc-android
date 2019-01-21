@@ -1,15 +1,18 @@
 package com.example.ericsharkey.amwayrewards.fragments;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.ViewModels.LoginViewModel;
+import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
 import com.facebook.CallbackManager;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
@@ -26,13 +29,40 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth mAuth;
     public static final int RC_SIGN_IN = 1;
     public static final String TAG = "Facebook Login";
+    private MainInterface mInterface;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
 
     private LoginViewModel mLoginViewModel;
-
-
     public static LoginFragment newInstance (){
         return new LoginFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if(context instanceof MainInterface) {
+            mInterface = (MainInterface)context;
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                Log.i(TAG, "onAuthStateChanged: Changed");
+
+                if(mAuth.getCurrentUser() != null) {
+                    mInterface.addFragment(EventsFragment.newInstance());
+                }
+            }
+        };
     }
 
     @Nullable
@@ -42,7 +72,11 @@ public class LoginFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -78,6 +112,11 @@ public class LoginFragment extends Fragment {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                Log.i(TAG, "onActivityResult: " + user);
+
+
+                // TODO: Add Fragment
                 // ...
             } else {
                 // Sign in failed. If response is null the user canceled the
@@ -87,6 +126,7 @@ public class LoginFragment extends Fragment {
             }
         }
     }
+
 
     private void signOut(){
 
