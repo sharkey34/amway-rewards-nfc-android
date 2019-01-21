@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         setContentView(R.layout.activity_main);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame, LoginFragment.newInstance(), Const.LOGINTAG)
+                .replace(R.id.frame, LoginFragment.newInstance(), Const.LOGIN_TAG)
                 .commit();
     }
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        LoginFragment fragment = (LoginFragment) getSupportFragmentManager().findFragmentByTag(Const.LOGINTAG);
+        LoginFragment fragment = (LoginFragment) getSupportFragmentManager().findFragmentByTag(Const.LOGIN_TAG);
 
          if(fragment != null){
             fragment.onActivityResult(requestCode, resultCode, data);
