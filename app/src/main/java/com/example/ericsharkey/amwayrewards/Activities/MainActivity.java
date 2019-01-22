@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, LoginFragment.newInstance(), Const.LOGIN_TAG)
                 .commit();

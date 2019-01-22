@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.ViewModels.LoginViewModel;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
@@ -20,20 +21,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class LoginFragment extends Fragment {
 
-    private CallbackManager mCallbackManager;
     private FirebaseAuth mAuth;
     public static final int RC_SIGN_IN = 1;
     public static final String TAG = "Facebook Login";
     private MainInterface mInterface;
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    private DatabaseReference mDatabase;
 
     private LoginViewModel mLoginViewModel;
+
     public static LoginFragment newInstance (){
         return new LoginFragment();
     }
@@ -52,6 +56,11 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
+
+        // Use the application default credentials
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("users").child("5").setValue("hey");
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -76,6 +85,12 @@ public class LoginFragment extends Fragment {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAuth.removeAuthStateListener(mAuthListener);
     }
 
     @Override
@@ -113,16 +128,21 @@ public class LoginFragment extends Fragment {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+                // TODO: Save currentUser
                 Log.i(TAG, "onActivityResult: " + user);
 
-
-                // TODO: Add Fragment
-                // ...
+                Toast.makeText(getContext(), R.string.signin_successful,Toast.LENGTH_SHORT).show();
             } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-                // ...
+
+                if(response == null){
+                    Toast.makeText(getContext(), R.string.signin_cancelled,Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), R.string.signin_failed,Toast.LENGTH_SHORT).show();
+
+                    if(response.getError() != null) {
+                        Log.i(TAG, "onActivityResult: " + response.getError().getErrorCode());
+                    }
+                }
             }
         }
     }
@@ -138,8 +158,8 @@ public class LoginFragment extends Fragment {
                 .signOut(getContext())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
-                        // ...
-                    }
+                        Toast.makeText(getContext(), R.string.sign_out,Toast.LENGTH_SHORT).show();
+                   }
                 });
     }
 
@@ -153,7 +173,7 @@ public class LoginFragment extends Fragment {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        // ...
+                        Toast.makeText(getContext(), R.string.delete_acnt,Toast.LENGTH_SHORT).show();
                     }
                 });
     }
