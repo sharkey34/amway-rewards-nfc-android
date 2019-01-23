@@ -19,4 +19,11 @@
     <string name="signin_cancelled">Cancelled</string>
     <string name="no_connection">No Network Connection</string>
     <string name="date_time">%1$s\n%2$s</string>
+    <string name="content_desc">Image</string>
+    <string name="tickets_title">Tickets</string>
+    <string name="events_nav">Events</string>
+    <string name="rewards_nav">Rewards</string>
+    <string name="scavenger_nav">Scavenger Hunt</string>
+    <string name="sweepstakes_nav">Sweepstakes</string>
+    <string name="scanner_nav">Scanner</string>
 </resources>

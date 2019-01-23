@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/scavenger"
+        android:title="@string/scavenger_nav" />
+    <item
+        android:icon="@drawable/sweepstakes"
+        android:title="@string/sweepstakes_nav" />
+    <item
+        android:icon="@drawable/rewards"
+        android:title="@string/rewards_nav" />
+    <item
+        android:icon="@drawable/barcode"
+        android:title="@string/scanner_nav" />
+    <item
+        android:icon="@drawable/events"
+        android:title="@string/events_nav" />
+</menu>

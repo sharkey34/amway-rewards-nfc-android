@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.ericsharkey.amwayrewards.Adapters.EventAdapter;
-import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
 import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.interfaces.EventTaskInterface;
@@ -48,6 +46,8 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
         // TODO: add to adapter then to list.
         mEvents = events;
         EventAdapter adapter = new EventAdapter(getContext(), events);
+        this.getListView().setDivider(null);
+        this.getListView().setDividerHeight(0);
         this.setListAdapter(adapter);
     }
 
