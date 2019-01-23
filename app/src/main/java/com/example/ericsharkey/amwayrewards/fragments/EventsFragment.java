@@ -48,7 +48,6 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
         // TODO: add to adapter then to list.
         mEvents = events;
         EventAdapter adapter = new EventAdapter(getContext(), events);
-
         this.setListAdapter(adapter);
     }
 

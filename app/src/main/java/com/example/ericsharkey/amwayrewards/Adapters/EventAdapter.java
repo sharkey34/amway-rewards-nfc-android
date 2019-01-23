@@ -6,11 +6,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
 import com.example.ericsharkey.amwayrewards.R;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -47,23 +46,25 @@ public class EventAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-//        ViewHolder vh;
-//
-//        if(convertView == null){
-//            convertView = LayoutInflater.from(mContext).inflate(R.layout.grid_main, parent, false);
-//
-//            vh = new ViewHolder(convertView);
-//            convertView.setTag(vh);
-//        } else {
-//            vh = (ViewHolder)convertView.getTag();
-//        }
-//
-//        GoogleBook book = (GoogleBook) getItem(position);
-//        if (book != null){
-//            vh.mImage.setImageUrl(book.getmImage());
-//            vh.mTitle.setText(book.getmTitle());
-//        }
-//        return convertView;
+        ViewHolder vh;
+
+        if(convertView == null){
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.event_item, parent, false);
+
+            vh = new ViewHolder(convertView);
+            convertView.setTag(vh);
+        } else {
+            vh = (ViewHolder)convertView.getTag();
+        }
+
+        TicketmasterEvents event = (TicketmasterEvents) getItem(position);
+        if (event != null){
+            Glide.with(mContext).load(event.getmImageString()).into(vh.mImage);
+            vh.mTitle.setText(event.getmName());
+            String eventDateTime = mContext.getString(R.string.date_time,event.getmLocalDate(),event.getmLocalTime());
+            vh.mDateTime.setText(eventDateTime);
+        }
+        return convertView;
     }
 
 

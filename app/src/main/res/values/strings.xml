@@ -18,5 +18,5 @@
     <string name="signin_failed">Sign has failed</string>
     <string name="signin_cancelled">Cancelled</string>
     <string name="no_connection">No Network Connection</string>
-    <string name="date_time">%1$s\n%1$s</string>
+    <string name="date_time">%1$s\n%2$s</string>
 </resources>
