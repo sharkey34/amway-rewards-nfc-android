@@ -23,7 +23,6 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
     @Override
     protected ArrayList<TicketmasterEvents> doInBackground(Void... voids) {
 
-
         ArrayList<TicketmasterEvents> ticketmasterEvents = new ArrayList<>();
 
         final String address = Const.TICKETMASTER_EVENTS;

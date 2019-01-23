@@ -67,8 +67,7 @@ public class EventAdapter extends BaseAdapter {
         return convertView;
     }
 
-
-//     Static ViewHolder class.
+    // View Holder Class.
     static class ViewHolder{
         private final ImageView mImage;
         private final TextView mDateTime;
