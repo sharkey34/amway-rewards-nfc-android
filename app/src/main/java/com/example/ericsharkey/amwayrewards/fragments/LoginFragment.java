@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.ViewModels.LoginViewModel;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
@@ -28,8 +30,6 @@ import java.util.List;
 public class LoginFragment extends Fragment {
 
     private FirebaseAuth mAuth;
-    public static final int RC_SIGN_IN = 1;
-    public static final String TAG = "c";
     private MainInterface mInterface;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
@@ -53,15 +53,15 @@ public class LoginFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         mAuth = FirebaseAuth.getInstance();
 
         // Use the application default credentials
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+
+        // TODO: Still signed in.
         if(mAuth.getCurrentUser() != null){
-            Log.i(TAG, "onCreate: "+ mAuth.getCurrentUser().getDisplayName());
+            Log.i(Const.LOGIN_TAG, "onCreate: "+ mAuth.getCurrentUser().getDisplayName());
         }
     }
 
@@ -70,16 +70,6 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_login, container, false);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
     }
 
     @Override
@@ -99,7 +89,7 @@ public class LoginFragment extends Fragment {
                         .setAvailableProviders(providers)
                         .setLogo(R.drawable.logo)
                         .build(),
-                RC_SIGN_IN);
+                Const.RC_SIGN_IN);
     }
 
 
@@ -108,7 +98,7 @@ public class LoginFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == Const.RC_SIGN_IN) {
             handleSignInResponse(resultCode);
         }
     }
@@ -131,8 +121,6 @@ public class LoginFragment extends Fragment {
             mDatabase.child("users").child(user.getUid()).child("name").setValue(user.getDisplayName());
 
             Toast.makeText(getContext(), R.string.signin_successful,Toast.LENGTH_SHORT).show();
-
-
             mInterface.addFragment(EventsFragment.newInstance());
         }
 
@@ -152,7 +140,7 @@ public class LoginFragment extends Fragment {
                 .signOut(getContext())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
-//                        Toast.makeText(getContext(), R.string.sign_out,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.sign_out,Toast.LENGTH_SHORT).show();
                    }
                 });
     }
