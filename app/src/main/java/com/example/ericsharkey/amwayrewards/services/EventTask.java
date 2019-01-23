@@ -1,11 +1,8 @@
 package com.example.ericsharkey.amwayrewards.services;
 import android.os.AsyncTask;
-import android.util.Log;
-
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
 import com.example.ericsharkey.amwayrewards.interfaces.EventTaskInterface;
-
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -106,6 +103,6 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
 
     @Override
     protected void onPostExecute(ArrayList<TicketmasterEvents> ticketmasterEvents) {
-//        mInterface.onPostExecute(ticketmasterEvents);
+        mInterface.onPostExecute(ticketmasterEvents);
     }
 }

@@ -25,6 +25,7 @@ public class Const {
 
     // Events Fragment
     public static final String EVENTS_TAG = "Events";
+    public static final int BASE_ID = 0x00101;
 
 
     // Type ID

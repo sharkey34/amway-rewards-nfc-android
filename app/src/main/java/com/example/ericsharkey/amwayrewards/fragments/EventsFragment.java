@@ -8,7 +8,9 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.ericsharkey.amwayrewards.Adapters.EventAdapter;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
 import com.example.ericsharkey.amwayrewards.R;
@@ -17,6 +19,7 @@ import com.example.ericsharkey.amwayrewards.services.EventTask;
 import java.util.ArrayList;
 
 public class EventsFragment extends ListFragment implements EventTaskInterface {
+
     private ArrayList<TicketmasterEvents> mEvents = new ArrayList<>();
 
     public static EventsFragment newInstance(){
@@ -30,6 +33,8 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
         if(isConnected()){
             EventTask task = new EventTask(this);
             task.execute();
+        } else {
+            Toast.makeText(getContext(), R.string.no_connection, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -42,6 +47,9 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
     public void onPostExecute(ArrayList<TicketmasterEvents> events) {
         // TODO: add to adapter then to list.
         mEvents = events;
+        EventAdapter adapter = new EventAdapter(getContext(), events);
+
+        this.setListAdapter(adapter);
     }
 
     // Function to check if the device is connected and start the download task if it is.

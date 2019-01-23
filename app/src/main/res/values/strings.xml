@@ -11,10 +11,12 @@
     <string name="Password">Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="login">Login</string>
-    <string name="event_details">%1$s</string>
+    <string name="event_name">%1$s</string>
     <string name="sign_out">Signed Out</string>
     <string name="delete_acnt">Your account has been deleted.</string>
     <string name="signin_successful">Sign in was successful</string>
     <string name="signin_failed">Sign has failed</string>
     <string name="signin_cancelled">Cancelled</string>
+    <string name="no_connection">No Network Connection</string>
+    <string name="date_time">%1$s\n%1$s</string>
 </resources>

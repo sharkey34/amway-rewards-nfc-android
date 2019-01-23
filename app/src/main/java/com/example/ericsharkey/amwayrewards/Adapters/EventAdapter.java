@@ -1,12 +1,18 @@
 package com.example.ericsharkey.amwayrewards.Adapters;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
+import com.example.ericsharkey.amwayrewards.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class EventAdapter extends BaseAdapter {
 
@@ -17,26 +23,60 @@ public class EventAdapter extends BaseAdapter {
     public EventAdapter(Context context, ArrayList<TicketmasterEvents> events) {
         mContext = context;
         mEvents = events;
-
     }
 
     @Override
     public int getCount() {
+        if(mEvents != null){
+            return mEvents.size();
+        }
         return 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
-    }
+        if(mEvents != null && position >= 0 || position < Objects.requireNonNull(mEvents).size()){
+            return mEvents.get(position);
+        }
+        return null;    }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return Const.BASE_ID + position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+//        ViewHolder vh;
+//
+//        if(convertView == null){
+//            convertView = LayoutInflater.from(mContext).inflate(R.layout.grid_main, parent, false);
+//
+//            vh = new ViewHolder(convertView);
+//            convertView.setTag(vh);
+//        } else {
+//            vh = (ViewHolder)convertView.getTag();
+//        }
+//
+//        GoogleBook book = (GoogleBook) getItem(position);
+//        if (book != null){
+//            vh.mImage.setImageUrl(book.getmImage());
+//            vh.mTitle.setText(book.getmTitle());
+//        }
+//        return convertView;
+    }
+
+
+//     Static ViewHolder class.
+    static class ViewHolder{
+        private final ImageView mImage;
+        private final TextView mDateTime;
+        private final TextView mTitle;
+
+        ViewHolder(View _layout){
+            mImage =  _layout.findViewById(R.id.event_image);
+            mTitle = _layout.findViewById(R.id.event_text);
+            mDateTime = _layout.findViewById(R.id.date_time);
+        }
     }
 }
