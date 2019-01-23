@@ -7,6 +7,7 @@ import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
 import com.example.ericsharkey.amwayrewards.interfaces.EventTaskInterface;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -26,7 +27,7 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
     protected ArrayList<TicketmasterEvents> doInBackground(Void... voids) {
 
 
-        ArrayList<TicketmasterEvents> events = new ArrayList<>();
+        ArrayList<TicketmasterEvents> ticketmasterEvents = new ArrayList<>();
 
         final String address = Const.TICKETMASTER_EVENTS;
         HttpURLConnection connection = null;
@@ -45,10 +46,43 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
         try {
             is = Objects.requireNonNull(connection).getInputStream();
 
-            JSONObject obj1 = new JSONObject(IOUtils.toString(is,"UTF-8"));
+            JSONObject mainObject = new JSONObject(IOUtils.toString(is,"UTF-8"));
+            JSONObject embedded = mainObject.getJSONObject("_embedded");
+            JSONArray events = embedded.getJSONArray("events");
 
-            Log.d("TAG", "doInBackground: " + obj1);
+            for (int i = 0; i < events.length(); i++) {
 
+                JSONObject event = events.getJSONObject(i);
+
+                String name = event.getString("name");
+                String siteString = event.getString("url");
+
+                JSONArray images = event.getJSONArray("images");
+
+                String imageString = null;
+                if (images.length() >= 9) {
+                    // image string is getting the entire object
+                    JSONObject image = images.getJSONObject(8);
+                    imageString = image.getString("url");
+                }
+
+                JSONObject dates = event.getJSONObject("dates");
+                JSONObject start = dates.getJSONObject("start");
+
+                String localDateString = start.getString("localDate");
+                String localTimeString = start.getString("localTime");
+
+                JSONArray priceRanges = event.getJSONArray("priceRanges");
+
+                String minPrice = null;
+                if(priceRanges.length() >= 1){
+                    JSONObject objectZero = priceRanges.getJSONObject(0);
+                    minPrice = objectZero.getString("min");
+                }
+
+                ticketmasterEvents.add(new TicketmasterEvents(name, siteString,
+                        imageString, localDateString, localTimeString,minPrice));
+            }
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -67,7 +101,7 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
                 connection.disconnect();
             }
         }
-        return events;
+        return ticketmasterEvents;
     }
 
     @Override
