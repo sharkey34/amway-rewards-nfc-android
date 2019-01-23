@@ -18,15 +18,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
         Intent main = getIntent();
 
+        // Getting the boolean value determining whether user has already logged in.
         if(main.getBooleanExtra(Const.LAUNCHER_INTENT, false)) {
-
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, EventsFragment.newInstance(), Const.EVENTS_TAG)
-                    .commit();
+            addFragment(EventsFragment.newInstance(), Const.EVENTS_TAG);
         } else {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame, LoginFragment.newInstance(), Const.LOGIN_TAG)
-                    .commit();
+            addFragment(LoginFragment.newInstance(), Const.LOGIN_TAG);
         }
     }
 
@@ -34,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // If the result code was that of the login then calling the fragments onActivityResult.
         if(requestCode == Const.RC_SIGN_IN){
             LoginFragment fragment = (LoginFragment) getSupportFragmentManager().findFragmentByTag(Const.LOGIN_TAG);
 
@@ -44,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     }
 
     @Override
-    public void addFragment(Fragment fragment) {
+    public void addFragment(Fragment fragment, String tag) {
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame, fragment)
+                .replace(R.id.frame, fragment,tag)
                 .commit();
     }
 }

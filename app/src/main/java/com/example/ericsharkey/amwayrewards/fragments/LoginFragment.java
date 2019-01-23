@@ -7,12 +7,10 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.ViewModels.LoginViewModel;
@@ -29,11 +27,10 @@ import java.util.List;
 
 public class LoginFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
     private MainInterface mInterface;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mDatabase;
 
+    // TODO: Implement ViewModel.
     private LoginViewModel mLoginViewModel;
 
     public static LoginFragment newInstance (){
@@ -53,16 +50,8 @@ public class LoginFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
-
         // Use the application default credentials
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-
-        // TODO: Still signed in.
-        if(mAuth.getCurrentUser() != null){
-            Log.i(Const.LOGIN_TAG, "onCreate: "+ mAuth.getCurrentUser().getDisplayName());
-        }
     }
 
     @Nullable
@@ -121,7 +110,7 @@ public class LoginFragment extends Fragment {
             mDatabase.child("users").child(user.getUid()).child("name").setValue(user.getDisplayName());
 
             Toast.makeText(getContext(), R.string.signin_successful,Toast.LENGTH_SHORT).show();
-            mInterface.addFragment(EventsFragment.newInstance());
+            mInterface.addFragment(EventsFragment.newInstance(), Const.EVENTS_TAG);
         }
 
         if(resultCode == Activity.RESULT_CANCELED) {
@@ -130,6 +119,7 @@ public class LoginFragment extends Fragment {
     }
 
 
+    // TODO: Put in a REPO and call in ViewModel.
     private void signOut(){
 
         if(getContext() == null){
@@ -145,6 +135,7 @@ public class LoginFragment extends Fragment {
                 });
     }
 
+    // TODO: Put in a REPO and call in ViewModel.
     private void deleteAccount(){
         if(getContext() == null){
             return;

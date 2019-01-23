@@ -6,5 +6,5 @@ import com.example.ericsharkey.amwayrewards.fragments.EventsFragment;
 
 public interface MainInterface {
 
-    void addFragment(Fragment fragment);
+    void addFragment(Fragment fragment, String tag);
 }

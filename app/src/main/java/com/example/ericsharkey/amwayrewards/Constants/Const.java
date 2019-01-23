@@ -7,8 +7,11 @@ public class Const {
 
     // Ticketmaster
     public static final String TICKETMASTER_KEY = " LMgOmroBN2ghx1eucDOlHLIcCE1E6lIV ";
-    public static final String TICKETMASTER_SECRET = "6lEspwFmrphQB5U0";
-    public static final String TICKETMASTER_EVENTS = "url:https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey="+TICKETMASTER_KEY;
+    public static final String VENUE_ID = "KovZpZAEvEEA";
+    public static final String CLASSIFICATION_NAME = "Music, Arts & Entertainment, Miscellaneous";
+    public static final String TICKETMASTER_EVENTS = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" + TICKETMASTER_KEY +
+            "&venueId=" + VENUE_ID +
+            "&classificationName=" + CLASSIFICATION_NAME;
 
     // Launcher Activity
     public static final Boolean LOGIN_FRAGMENT = false;

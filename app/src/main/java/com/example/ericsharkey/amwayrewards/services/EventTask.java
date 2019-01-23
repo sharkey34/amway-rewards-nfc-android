@@ -1,7 +1,11 @@
 package com.example.ericsharkey.amwayrewards.services;
 import android.os.AsyncTask;
+import android.util.Log;
+
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
+import com.example.ericsharkey.amwayrewards.interfaces.EventTaskInterface;
+
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import java.io.InputStream;
@@ -12,6 +16,11 @@ import java.util.Objects;
 
 public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents>> {
 
+    private EventTaskInterface mInterface;
+
+    public EventTask(EventTaskInterface _interface) {
+        mInterface = _interface;
+    }
 
     @Override
     protected ArrayList<TicketmasterEvents> doInBackground(Void... voids) {
@@ -19,7 +28,7 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
 
         ArrayList<TicketmasterEvents> events = new ArrayList<>();
 
-        final String address = Const.TICKETMASTER_KEY;
+        final String address = Const.TICKETMASTER_EVENTS;
         HttpURLConnection connection = null;
         InputStream is = null;
 
@@ -38,23 +47,8 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
 
             JSONObject obj1 = new JSONObject(IOUtils.toString(is,"UTF-8"));
 
-//            JSONArray arr1 = obj1.getJSONArray("items");
-//
-//            for (int i = 0; i < arr1.length(); i++) {
-//                JSONObject obj2 = arr1.getJSONObject(i);
-//                JSONObject obj3 = obj2.getJSONObject("volumeInfo");
-//
-//                String title = obj3.getString("title");
-//
-//                JSONObject obj4 = obj3.getJSONObject("imageLinks");
-//
-//                String imageURL = obj4.getString("thumbnail");
-//                Log.i("TAG", "doInBackground: " + imageURL);
-//
-//                if (title != null && imageURL != null){
-//                    events.add(i,new (title, imageURL) );
-//                }
-//            }
+            Log.d("TAG", "doInBackground: " + obj1);
+
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -78,6 +72,6 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
 
     @Override
     protected void onPostExecute(ArrayList<TicketmasterEvents> ticketmasterEvents) {
-        super.onPostExecute(ticketmasterEvents);
+//        mInterface.onPostExecute(ticketmasterEvents);
     }
 }
