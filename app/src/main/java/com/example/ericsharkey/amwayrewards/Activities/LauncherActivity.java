@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.R;
-import com.example.ericsharkey.amwayrewards.Utilities.Utils;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,6 +45,7 @@ public class LauncherActivity extends AppCompatActivity {
             setUpAuthUI();
         }
     }
+
 
     private void toMain(){
         Intent main = new Intent();
