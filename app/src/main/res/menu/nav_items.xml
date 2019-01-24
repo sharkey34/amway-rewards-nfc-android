@@ -3,18 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/nav_scavenger"
         android:icon="@drawable/scavenger"
         android:title="@string/scavenger_nav" />
     <item
+        android:id="@+id/nav_sweepstakes"
         android:icon="@drawable/sweepstakes"
         android:title="@string/sweepstakes_nav" />
     <item
+        android:id="@+id/nav_rewards"
+        android:icon="@drawable/events"
+        android:title="@string/events_nav" />
+    <item
+        android:id="@+id/nav_scanner"
         android:icon="@drawable/rewards"
         android:title="@string/rewards_nav" />
     <item
+        android:id="@+id/nav_events"
         android:icon="@drawable/barcode"
         android:title="@string/scanner_nav" />
-    <item
-        android:icon="@drawable/events"
-        android:title="@string/events_nav" />
 </menu>

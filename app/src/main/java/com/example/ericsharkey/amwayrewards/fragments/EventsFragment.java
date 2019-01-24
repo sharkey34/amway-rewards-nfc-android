@@ -1,7 +1,4 @@
 package com.example.ericsharkey.amwayrewards.fragments;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -12,6 +9,7 @@ import android.widget.Toast;
 import com.example.ericsharkey.amwayrewards.Adapters.EventAdapter;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
 import com.example.ericsharkey.amwayrewards.R;
+import com.example.ericsharkey.amwayrewards.Utilities.Utils;
 import com.example.ericsharkey.amwayrewards.interfaces.EventTaskInterface;
 import com.example.ericsharkey.amwayrewards.services.EventTask;
 import java.util.ArrayList;
@@ -28,7 +26,7 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(isConnected()){
+        if(Utils.isConnected(getActivity())){
             EventTask task = new EventTask(this);
             task.execute();
         } else {
@@ -49,28 +47,5 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
         this.getListView().setDivider(null);
         this.getListView().setDividerHeight(0);
         this.setListAdapter(adapter);
-    }
-
-    // Function to check if the device is connected and start the download task if it is.
-    private boolean isConnected(){
-
-        if (getActivity() == null){
-            return false;
-        }
-
-        ConnectivityManager connMgr = (ConnectivityManager) getActivity()
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        if(connMgr == null){
-            return false;
-        }
-
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-        if (networkInfo != null && networkInfo.isConnected()) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

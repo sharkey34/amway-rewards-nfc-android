@@ -10,6 +10,9 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        app:itemBackground="@color/amway_blue"
+        app:itemIconTint="@color/nav_items_color"
+        app:itemTextColor="@color/nav_items_color"
         app:menu="@menu/nav_items"
         >
     </android.support.design.widget.BottomNavigationView>

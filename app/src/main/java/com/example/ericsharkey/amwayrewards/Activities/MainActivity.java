@@ -1,43 +1,32 @@
 package com.example.ericsharkey.amwayrewards.Activities;
-import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.fragments.EventsFragment;
-import com.example.ericsharkey.amwayrewards.fragments.LoginFragment;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
+
+    private BottomNavigationView mNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent main = getIntent();
+        // TODO: move fragment creation here so thery're created once and use RxJava to update the data.
 
-        // Getting the boolean value determining whether user has already logged in.
-        if(main.getBooleanExtra(Const.LAUNCHER_INTENT, false)) {
+        mNav = findViewById(R.id.main_nav);
+
+        mNav.setOnNavigationItemSelectedListener(navItemSelected);
+
             addFragment(EventsFragment.newInstance(), Const.EVENTS_TAG);
-        } else {
-            addFragment(LoginFragment.newInstance(), Const.LOGIN_TAG);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // If the result code was that of the login then calling the fragments onActivityResult.
-        if(requestCode == Const.RC_SIGN_IN){
-            LoginFragment fragment = (LoginFragment) getSupportFragmentManager().findFragmentByTag(Const.LOGIN_TAG);
-
-            if(fragment != null){
-                fragment.onActivityResult(requestCode, resultCode, data);
-            }
-        }
     }
 
     @Override
@@ -47,5 +36,30 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 .replace(R.id.frame, fragment,tag)
                 .commit();
     }
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+
+                case R.id.nav_scavenger:
+                    return true;
+                case  R.id.nav_sweepstakes:
+                    return true;
+
+                case R.id.nav_events:
+                    return true;
+                case  R.id.nav_rewards:
+                    return true;
+
+                case R.id.nav_scanner:
+                    return true;
+                default:
+                        return false;
+            }
+        }
+    };
 }
 

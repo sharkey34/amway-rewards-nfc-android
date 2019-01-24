@@ -6,5 +6,4 @@ public class ScannerFragment{
     public static ScannerFragment newInstance(){
         return new ScannerFragment();
     }
-
 }
