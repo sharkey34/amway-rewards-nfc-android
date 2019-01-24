@@ -41,10 +41,17 @@ public class LauncherActivity extends AppCompatActivity {
         // If logged in send to Rewards Page to login or send to main activity.
 
         if (mAuth.getCurrentUser() != null){
-            Utils.addFragment(this);
+            toMain();
         } else {
             setUpAuthUI();
         }
+    }
+
+    private void toMain(){
+        Intent main = new Intent();
+        main.setClass(this, MainActivity.class);
+        startActivity(main);
+        finish();
     }
 
     private void setUpAuthUI(){
@@ -90,7 +97,7 @@ public class LauncherActivity extends AppCompatActivity {
             mDatabase.child("users").child(user.getUid()).child("name").setValue(user.getDisplayName());
 
             Toast.makeText(this, R.string.signin_successful,Toast.LENGTH_SHORT).show();
-            Utils.addFragment(this);
+            toMain();
         }
 
         if(resultCode == Activity.RESULT_CANCELED) {
