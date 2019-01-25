@@ -18,14 +18,13 @@ import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.fragments.EventsFragment;
 import com.example.ericsharkey.amwayrewards.fragments.NFCFragment;
 import com.example.ericsharkey.amwayrewards.fragments.RewardsFragment;
+import com.example.ericsharkey.amwayrewards.fragments.ScannerFragment;
 import com.example.ericsharkey.amwayrewards.fragments.ScavengerHuntFragment;
 import com.example.ericsharkey.amwayrewards.fragments.SweepstakesFragment;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
@@ -104,7 +103,24 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                             payload.length - languageCodeLength - 1, textEncoding);
 
 
-            Log.i("TAG", "parseMessage: " + text);
+            String[] item = text.split("/");
+
+            String title = item[0];
+            String points = item[1];
+
+            NFCFragment fragment = NFCFragment.newInstance();
+
+            Bundle bundle = new Bundle();
+
+            bundle.putString(Const.EXTRA_TITLE, title);
+            bundle.putString(Const.EXTRA_POINTS, points);
+
+            Log.i("TAG", "parseMessage: " + title + " " + points);
+
+            fragment.setArguments(bundle);
+
+            addFragment(fragment, Const.SCANNER_TAG);
+
         } catch (UnsupportedEncodingException e) {
 
             throw new IllegalArgumentException(e);
@@ -148,6 +164,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                     addFragment(SweepstakesFragment.newInstance(), Const.SWEEPSTAKES_TAG);
                     return true;
                 case R.id.nav_scanner:
+
+                    // TODO: Clean up
                     addFragment(NFCFragment.newInstance(), Const.SCANNER_TAG);
                     return true;
                 default:
