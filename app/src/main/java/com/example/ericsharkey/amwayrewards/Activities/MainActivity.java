@@ -1,13 +1,16 @@
 package com.example.ericsharkey.amwayrewards.Activities;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
@@ -18,15 +21,27 @@ import com.example.ericsharkey.amwayrewards.fragments.RewardsFragment;
 import com.example.ericsharkey.amwayrewards.fragments.ScavengerHuntFragment;
 import com.example.ericsharkey.amwayrewards.fragments.SweepstakesFragment;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
     private BottomNavigationView mNav;
+    private PendingIntent mPendingIntent;
+    private NfcAdapter mNFCAdapter;
+    private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         // TODO: Make custom implementation
        if(getSupportActionBar() != null){
@@ -40,6 +55,13 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         mNav = findViewById(R.id.main_nav);
         mNav.setOnNavigationItemSelectedListener(navItemSelected);
         addFragment(EventsFragment.newInstance(), Const.EVENTS_TAG);
+
+
+        mNFCAdapter = NfcAdapter.getDefaultAdapter(this);
+
+        mPendingIntent = PendingIntent.getActivity(this, 0,
+                new Intent(this, this.getClass())
+                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
     }
 
     @Override
@@ -61,11 +83,49 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 for (int i = 0; i < rawMessages.length; i++) {
                     messages[i] = (NdefMessage) rawMessages[i];
 
-                    Toast.makeText(this, messages[i].toString(),Toast.LENGTH_LONG ).show();
                 }
                 // TODO: Process the messages array.
+
+                // TODO: Currently only processing one.
+                parseMessage(messages[0]);
             }
         }
+    }
+
+
+    private void parseMessage(NdefMessage message) {
+
+        try {
+            byte[] payload = message.getRecords()[0].getPayload();
+
+            String textEncoding = ((payload[0] & 0200) == 0) ? "UTF-8" : "UTF-16";
+            int languageCodeLength = payload[0] & 0077;
+            String text = new String(payload, languageCodeLength + 1,
+                            payload.length - languageCodeLength - 1, textEncoding);
+
+
+            Log.i("TAG", "parseMessage: " + text);
+        } catch (UnsupportedEncodingException e) {
+
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mNFCAdapter != null) {
+            if (!mNFCAdapter.isEnabled())
+                showWirelessSettings();
+            mNFCAdapter.enableForegroundDispatch(this, mPendingIntent, null, null);
+        }
+    }
+
+    private void showWirelessSettings() {
+        Toast.makeText(this, R.string.enable_NFC, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+        startActivity(intent);
     }
 
 
