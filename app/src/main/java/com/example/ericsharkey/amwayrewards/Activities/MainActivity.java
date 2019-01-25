@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             String text = new String(payload, languageCodeLength + 1,
                             payload.length - languageCodeLength - 1, textEncoding);
 
-
             String[] item = text.split("/");
 
             String title = item[0];
@@ -115,10 +114,9 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             bundle.putString(Const.EXTRA_TITLE, title);
             bundle.putString(Const.EXTRA_POINTS, points);
 
-            Log.i("TAG", "parseMessage: " + title + " " + points);
-
             fragment.setArguments(bundle);
 
+            mNav.setSelectedItemId(R.id.nav_scanner);
             addFragment(fragment, Const.SCANNER_TAG);
 
         } catch (UnsupportedEncodingException e) {
