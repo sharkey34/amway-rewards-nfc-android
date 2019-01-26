@@ -10,7 +10,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
@@ -18,10 +17,11 @@ import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.fragments.EventsFragment;
 import com.example.ericsharkey.amwayrewards.fragments.NFCFragment;
 import com.example.ericsharkey.amwayrewards.fragments.RewardsFragment;
-import com.example.ericsharkey.amwayrewards.fragments.ScannerFragment;
 import com.example.ericsharkey.amwayrewards.fragments.ScavengerHuntFragment;
 import com.example.ericsharkey.amwayrewards.fragments.SweepstakesFragment;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
+import com.google.android.gms.auth.api.Auth;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.io.UnsupportedEncodingException;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     private PendingIntent mPendingIntent;
     private NfcAdapter mNFCAdapter;
     private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         setContentView(R.layout.activity_main);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
 
         // TODO: Make custom implementation
@@ -115,6 +117,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             bundle.putString(Const.EXTRA_POINTS, points);
 
             fragment.setArguments(bundle);
+
+            if(mAuth.getCurrentUser() != null){
+                String uid = mAuth.getCurrentUser().getUid();
+                mDatabase.child("users").child(uid).child("points").setValue(points);
+            }
 
             mNav.setSelectedItemId(R.id.nav_scanner);
             addFragment(fragment, Const.SCANNER_TAG);
