@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import com.example.ericsharkey.amwayrewards.Adapters.EventAdapter;
-import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
+import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvent;
 import com.example.ericsharkey.amwayrewards.R;
 import com.example.ericsharkey.amwayrewards.Utilities.Utils;
 import com.example.ericsharkey.amwayrewards.interfaces.EventTaskInterface;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class EventsFragment extends ListFragment implements EventTaskInterface {
 
-    private ArrayList<TicketmasterEvents> mEvents = new ArrayList<>();
+    private ArrayList<TicketmasterEvent> mEvents = new ArrayList<>();
 
     public static EventsFragment newInstance(){
         return new EventsFragment();
@@ -40,7 +40,7 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
     }
 
     @Override
-    public void onPostExecute(ArrayList<TicketmasterEvents> events) {
+    public void onPostExecute(ArrayList<TicketmasterEvent> events) {
         // TODO: add to adapter then to list.
         mEvents = events;
         EventAdapter adapter = new EventAdapter(getContext(), events);

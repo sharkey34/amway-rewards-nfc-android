@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
-import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
+import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvent;
 import com.example.ericsharkey.amwayrewards.R;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -16,10 +16,10 @@ import java.util.Objects;
 public class EventAdapter extends BaseAdapter {
 
     private Context mContext;
-    private ArrayList<TicketmasterEvents> mEvents;
+    private ArrayList<TicketmasterEvent> mEvents;
 
 
-    public EventAdapter(Context context, ArrayList<TicketmasterEvents> events) {
+    public EventAdapter(Context context, ArrayList<TicketmasterEvent> events) {
         mContext = context;
         mEvents = events;
     }
@@ -57,7 +57,7 @@ public class EventAdapter extends BaseAdapter {
             vh = (ViewHolder)convertView.getTag();
         }
 
-        TicketmasterEvents event = (TicketmasterEvents) getItem(position);
+        TicketmasterEvent event = (TicketmasterEvent) getItem(position);
         if (event != null){
             Glide.with(mContext).load(event.getmImageString()).into(vh.mImage);
             vh.mTitle.setText(event.getmName());

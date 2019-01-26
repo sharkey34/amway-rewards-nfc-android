@@ -1,6 +1,6 @@
 package com.example.ericsharkey.amwayrewards.Models;
 
-public class TicketmasterEvents {
+public class TicketmasterEvent {
 
     private String mName;
     private String mSiteString;
@@ -9,7 +9,7 @@ public class TicketmasterEvents {
     private String mLocalTime;
     private String mMinPrice;
 
-    public TicketmasterEvents(String mName, String mSiteString, String mImageString, String mLocalDate, String mLocalTime, String mMinPrice) {
+    public TicketmasterEvent(String mName, String mSiteString, String mImageString, String mLocalDate, String mLocalTime, String mMinPrice) {
         this.mName = mName;
         this.mSiteString = mSiteString;
         this.mImageString = mImageString;

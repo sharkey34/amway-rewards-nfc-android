@@ -1,7 +1,7 @@
 package com.example.ericsharkey.amwayrewards.services;
 import android.os.AsyncTask;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
-import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvents;
+import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvent;
 import com.example.ericsharkey.amwayrewards.interfaces.EventTaskInterface;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents>> {
+public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvent>> {
 
     private EventTaskInterface mInterface;
 
@@ -21,9 +21,9 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
     }
 
     @Override
-    protected ArrayList<TicketmasterEvents> doInBackground(Void... voids) {
+    protected ArrayList<TicketmasterEvent> doInBackground(Void... voids) {
 
-        ArrayList<TicketmasterEvents> ticketmasterEvents = new ArrayList<>();
+        ArrayList<TicketmasterEvent> ticketmasterEvents = new ArrayList<>();
 
         final String address = Const.TICKETMASTER_EVENTS;
         HttpURLConnection connection = null;
@@ -76,7 +76,7 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
                     minPrice = objectZero.getString("min");
                 }
 
-                ticketmasterEvents.add(new TicketmasterEvents(name, siteString,
+                ticketmasterEvents.add(new TicketmasterEvent(name, siteString,
                         imageString, localDateString, localTimeString,minPrice));
             }
         }
@@ -101,7 +101,7 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvents
     }
 
     @Override
-    protected void onPostExecute(ArrayList<TicketmasterEvents> ticketmasterEvents) {
+    protected void onPostExecute(ArrayList<TicketmasterEvent> ticketmasterEvents) {
         mInterface.onPostExecute(ticketmasterEvents);
     }
 }
