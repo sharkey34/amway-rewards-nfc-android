@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +41,7 @@ public class NFCFragment extends Fragment {
             String title = bundle.getString(Const.EXTRA_TITLE);
             String points = bundle.getString(Const.EXTRA_POINTS);
 
-            TextView titleTv = getActivity().findViewById(R.id.title_text);
+            TextView titleTv = getActivity().findViewById(R.id.scavenger_title);
             TextView pointsTv = getActivity().findViewById(R.id.points_text);
 
             titleTv.setText(title);
