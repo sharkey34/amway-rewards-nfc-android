@@ -10,6 +10,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
@@ -50,18 +51,18 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
            getSupportActionBar().setLogo(R.drawable.menu_logo);
            getSupportActionBar().setDisplayUseLogoEnabled(true);
        }
-
         // TODO: move fragment creation here so they're created once and use RxJava to update the data.
         mNav = findViewById(R.id.main_nav);
         mNav.setOnNavigationItemSelectedListener(navItemSelected);
-        addFragment(EventsFragment.newInstance(), Const.EVENTS_TAG);
-
+//        Log.i("TAG", "onCreate: ");
 
         mNFCAdapter = NfcAdapter.getDefaultAdapter(this);
 
-        mPendingIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, this.getClass())
-                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        handleIntent(getIntent());
+//
+//        mPendingIntent = PendingIntent.getActivity(this, 0,
+//                new Intent(this, this.getClass())
+//                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
     }
 
     @Override
@@ -74,7 +75,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+
+    private void handleIntent(Intent intent) {
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
             Parcelable[] rawMessages =
                     intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
@@ -85,10 +90,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
                 }
                 // TODO: Process the messages array.
-
+                Log.i("TAG", "onNewIntent: ");
                 // TODO: Currently only processing one.
                 parseMessage(messages[0]);
             }
+        } else {
+            addFragment(EventsFragment.newInstance(), Const.EVENTS_TAG);
         }
     }
 
@@ -118,10 +125,13 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             fragment.setArguments(bundle);
 
             if(mAuth.getCurrentUser() != null){
+
+                // TODO: Get Users current points and add then store new total.
                 String uid = mAuth.getCurrentUser().getUid();
                 mDatabase.child("users").child(uid).child("points").setValue(points);
             }
 
+            Log.i("TAG", "parseMessage: ");
             mNav.setSelectedItemId(R.id.nav_scanner);
             addFragment(fragment, Const.SCANNER_TAG);
 
@@ -138,6 +148,11 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         if (mNFCAdapter != null) {
             if (!mNFCAdapter.isEnabled())
                 showWirelessSettings();
+
+            // TODO: New
+            mPendingIntent = PendingIntent.getActivity(this, 0,
+                    new Intent(this, this.getClass())
+                            .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
             mNFCAdapter.enableForegroundDispatch(this, mPendingIntent, null, null);
         }
     }
