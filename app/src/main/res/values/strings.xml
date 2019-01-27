@@ -27,4 +27,6 @@
     <string name="sweepstakes_nav">Sweepstakes</string>
     <string name="scanner_nav">Scanner</string>
     <string name="enable_NFC">Please Enable NFC to use this Feature</string>
+    <string name="scavenger_earn">Earn:</string>
+    <string name="sweepstakes_entry">Entry:</string>
 </resources>

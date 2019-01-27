@@ -41,7 +41,7 @@ public class NFCFragment extends Fragment {
             String title = bundle.getString(Const.EXTRA_TITLE);
             String points = bundle.getString(Const.EXTRA_POINTS);
 
-            TextView titleTv = getActivity().findViewById(R.id.sweepstakes_title);
+            TextView titleTv = getActivity().findViewById(R.id.scavenger_title);
             TextView pointsTv = getActivity().findViewById(R.id.points_text);
 
             titleTv.setText(title);

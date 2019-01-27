@@ -54,15 +54,10 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         // TODO: move fragment creation here so they're created once and use RxJava to update the data.
         mNav = findViewById(R.id.main_nav);
         mNav.setOnNavigationItemSelectedListener(navItemSelected);
-//        Log.i("TAG", "onCreate: ");
 
         mNFCAdapter = NfcAdapter.getDefaultAdapter(this);
 
         handleIntent(getIntent());
-//
-//        mPendingIntent = PendingIntent.getActivity(this, 0,
-//                new Intent(this, this.getClass())
-//                        .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
     }
 
     @Override

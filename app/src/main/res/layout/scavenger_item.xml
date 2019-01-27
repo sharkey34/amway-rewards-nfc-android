@@ -17,7 +17,7 @@
         android:layout_marginEnd="8dp" />
 
     <ImageView
-        android:id="@+id/sweepstakes_image"
+        android:id="@+id/scavenger_image"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_alignStart="@+id/container_view"
@@ -28,13 +28,13 @@
         app:srcCompat="@drawable/com_facebook_button_icon_blue" />
 
     <TextView
-        android:id="@+id/sweepstakes_title"
+        android:id="@+id/scavenger_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/container_view"
         android:layout_marginStart="18dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/sweepstakes_image"
+        android:layout_toEndOf="@+id/scavenger_image"
         android:text="TextView"
         android:textStyle="bold"
         android:textSize="18sp"
@@ -45,22 +45,22 @@
         android:id="@+id/scavenger_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sweepstakes_title"
+        android:layout_below="@+id/scavenger_title"
         android:layout_marginStart="18dp"
         android:layout_marginTop="9dp"
-        android:layout_toEndOf="@+id/sweepstakes_image"
+        android:layout_toEndOf="@+id/scavenger_image"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
-        android:id="@+id/sweepstakes_earn"
+        android:id="@+id/scavenger_earn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/container_view"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="11dp"
-        android:layout_toEndOf="@+id/sweepstakes_image"
-        android:text="TextView"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/scavenger_image"
+        android:text="@string/scavenger_earn"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/amway_blue" />
 
@@ -71,7 +71,7 @@
         android:layout_alignBottom="@+id/container_view"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/sweepstakes_earn"
+        android:layout_toEndOf="@+id/scavenger_earn"
         android:textColor="@color/amway_red_light"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat" />
