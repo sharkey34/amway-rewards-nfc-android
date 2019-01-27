@@ -1,15 +1,18 @@
 package com.example.ericsharkey.amwayrewards.Adapters;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import com.example.ericsharkey.amwayrewards.Models.SweepstakeItem;
+
+import com.example.ericsharkey.amwayrewards.Models.ScavengerItem;
+
 import java.util.ArrayList;
 
-public class SweepstakesAdapter extends BaseAdapter {
+public class ScavengerAdapter extends BaseAdapter {
 
     private Context mContext;
-    private ArrayList<SweepstakeItem> mList;
+    private ArrayList<ScavengerItem> mList;
 
     @Override
     public int getCount() {

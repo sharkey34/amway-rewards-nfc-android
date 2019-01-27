@@ -7,7 +7,6 @@ public class ScavengerItem {
     private String mPoints;
     private String mCategoryImageString;
 
-
     public ScavengerItem(String mTitle, String mDesc, String mPoints, String mCategoryImageString) {
         this.mTitle = mTitle;
         this.mDesc = mDesc;

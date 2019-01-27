@@ -20,7 +20,6 @@ import com.example.ericsharkey.amwayrewards.fragments.RewardsFragment;
 import com.example.ericsharkey.amwayrewards.fragments.ScavengerHuntFragment;
 import com.example.ericsharkey.amwayrewards.fragments.SweepstakesFragment;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
-import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -143,12 +142,18 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         }
     }
 
+    @Override
+    protected void onPause() {
+
+       mNFCAdapter.disableForegroundDispatch(this);
+        super.onPause();
+    }
+
     private void showWirelessSettings() {
         Toast.makeText(this, R.string.enable_NFC, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
         startActivity(intent);
     }
-
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
