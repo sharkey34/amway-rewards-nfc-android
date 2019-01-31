@@ -56,10 +56,6 @@ public class ScavengerHuntFragment extends ListFragment {
         return inflater.inflate(R.layout.fragment_scavenger, container, false);
     }
 
-
-
-
-
     private void getData(DataSnapshot dataSnapshot){
 
         for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
