@@ -1,6 +1,6 @@
 package com.example.ericsharkey.amwayrewards.Models;
 
-public class User {
+class User {
 
     private String mUID;
     private String mEmail;

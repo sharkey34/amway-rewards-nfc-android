@@ -5,9 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
+
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.ScavengerItem;
 import com.example.ericsharkey.amwayrewards.R;
@@ -16,8 +15,8 @@ import java.util.Objects;
 
 public class ScavengerAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private ArrayList<ScavengerItem> mList;
+    private final Context mContext;
+    private final ArrayList<ScavengerItem> mList;
 
     public ScavengerAdapter(Context context, ArrayList<ScavengerItem> items) {
         mContext = context;

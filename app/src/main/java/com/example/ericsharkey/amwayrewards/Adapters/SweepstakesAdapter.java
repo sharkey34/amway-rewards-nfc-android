@@ -4,9 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
+
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.SweepstakeItem;
 import com.example.ericsharkey.amwayrewards.R;
@@ -15,8 +14,8 @@ import java.util.Objects;
 
 public class SweepstakesAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private ArrayList<SweepstakeItem> mList;
+    private final Context mContext;
+    private final ArrayList<SweepstakeItem> mList;
 
     public SweepstakesAdapter(Context context, ArrayList<SweepstakeItem> items) {
         mContext = context;

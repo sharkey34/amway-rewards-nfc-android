@@ -15,8 +15,8 @@ import java.util.Objects;
 
 public class EventAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private ArrayList<TicketmasterEvent> mEvents;
+    private final Context mContext;
+    private final ArrayList<TicketmasterEvent> mEvents;
 
 
     public EventAdapter(Context context, ArrayList<TicketmasterEvent> events) {

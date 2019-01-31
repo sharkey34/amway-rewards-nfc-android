@@ -16,15 +16,14 @@ import java.util.ArrayList;
 
 public class EventsFragment extends ListFragment implements EventTaskInterface {
 
-    private ArrayList<TicketmasterEvent> mEvents = new ArrayList<>();
 
     public static EventsFragment newInstance(){
         return new EventsFragment();
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         if(Utils.isConnected(getActivity())){
             EventTask task = new EventTask(this);
@@ -42,7 +41,6 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
     @Override
     public void onPostExecute(ArrayList<TicketmasterEvent> events) {
         // TODO: add to adapter then to list.
-        mEvents = events;
         EventAdapter adapter = new EventAdapter(getContext(), events);
         this.getListView().setDivider(null);
         this.getListView().setDividerHeight(0);

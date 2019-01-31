@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvent>> {
 
-    private EventTaskInterface mInterface;
+    private final EventTaskInterface mInterface;
 
     public EventTask(EventTaskInterface _interface) {
         mInterface = _interface;

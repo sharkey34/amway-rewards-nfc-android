@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.R;
 
 public class ScannerFragment extends Fragment {
@@ -17,12 +15,6 @@ public class ScannerFragment extends Fragment {
         return new ScannerFragment();
     }
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Nullable
     @Override

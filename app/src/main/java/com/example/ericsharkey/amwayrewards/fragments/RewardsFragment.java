@@ -5,17 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ericsharkey.amwayrewards.Adapters.ScavengerAdapter;
-import com.example.ericsharkey.amwayrewards.Models.ScavengerItem;
 import com.example.ericsharkey.amwayrewards.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RewardsFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
 
@@ -42,7 +37,7 @@ public class RewardsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() == null) {
             return;

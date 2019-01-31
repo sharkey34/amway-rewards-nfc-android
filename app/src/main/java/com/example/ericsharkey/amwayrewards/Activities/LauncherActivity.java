@@ -21,7 +21,6 @@ import java.util.List;
 
 public class LauncherActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
     // TODO: Implement ViewModel.
@@ -32,7 +31,7 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // TODO: Pull from shared preferences and see if the user has logged in
@@ -81,8 +80,6 @@ public class LauncherActivity extends AppCompatActivity {
 
     @MainThread
     private void handleSignInResponse(int resultCode) {
-//        IdpResponse response = IdpResponse.fromResultIntent(data);
-//        Log.i(TAG, "handleSignInResponse: " + response.getEmail());
 
         if (resultCode == Activity.RESULT_OK) {
             // Successfully signed in
@@ -94,6 +91,7 @@ public class LauncherActivity extends AppCompatActivity {
 
             mDatabase.child("users").child(user.getUid()).child("email").setValue(user.getEmail());
             mDatabase.child("users").child(user.getUid()).child("name").setValue(user.getDisplayName());
+            mDatabase.child("users").child(user.getUid()).child("points").setValue("0");
 
             Toast.makeText(this, R.string.signin_successful,Toast.LENGTH_SHORT).show();
             toMain();

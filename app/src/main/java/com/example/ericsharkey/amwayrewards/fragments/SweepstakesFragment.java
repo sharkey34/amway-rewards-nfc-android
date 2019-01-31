@@ -8,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ericsharkey.amwayrewards.Adapters.ScavengerAdapter;
 import com.example.ericsharkey.amwayrewards.Adapters.SweepstakesAdapter;
-import com.example.ericsharkey.amwayrewards.Models.ScavengerItem;
 import com.example.ericsharkey.amwayrewards.Models.SweepstakeItem;
 import com.example.ericsharkey.amwayrewards.R;
 import com.google.firebase.database.DataSnapshot;
@@ -23,10 +21,9 @@ import java.util.ArrayList;
 
 public class SweepstakesFragment extends ListFragment {
 
-    private ArrayList<SweepstakeItem> sweepstakeItems = new ArrayList<>();
-    private DatabaseReference mDatabase;
+    private final ArrayList<SweepstakeItem> sweepstakeItems = new ArrayList<>();
 
-// Should use bundle instead.
+    // Should use bundle instead.
     public static SweepstakesFragment newInstance(){
         return new SweepstakesFragment();
     }
@@ -36,7 +33,7 @@ public class SweepstakesFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("sweepstakes");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("sweepstakes");
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override

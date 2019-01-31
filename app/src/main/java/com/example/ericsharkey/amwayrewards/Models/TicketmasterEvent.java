@@ -2,12 +2,12 @@ package com.example.ericsharkey.amwayrewards.Models;
 
 public class TicketmasterEvent {
 
-    private String mName;
-    private String mSiteString;
-    private String mImageString;
-    private String mLocalDate;
-    private String mLocalTime;
-    private String mMinPrice;
+    private final String mName;
+    private final String mSiteString;
+    private final String mImageString;
+    private final String mLocalDate;
+    private final String mLocalTime;
+    private final String mMinPrice;
 
     public TicketmasterEvent(String mName, String mSiteString, String mImageString, String mLocalDate, String mLocalTime, String mMinPrice) {
         this.mName = mName;

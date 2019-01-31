@@ -7,13 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.ericsharkey.amwayrewards.Adapters.ScavengerAdapter;
 import com.example.ericsharkey.amwayrewards.Models.ScavengerItem;
 import com.example.ericsharkey.amwayrewards.R;
-import com.example.ericsharkey.amwayrewards.Utilities.Utils;
-import com.example.ericsharkey.amwayrewards.services.EventTask;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,8 +21,7 @@ import java.util.ArrayList;
 
 public class ScavengerHuntFragment extends ListFragment {
 
-    private ArrayList<ScavengerItem> scavengerItems = new ArrayList<>();
-    private DatabaseReference mDatabase;
+    private final ArrayList<ScavengerItem> scavengerItems = new ArrayList<>();
 
     public static ScavengerHuntFragment newInstance(){
         return new ScavengerHuntFragment();
@@ -35,7 +31,7 @@ public class ScavengerHuntFragment extends ListFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("scavenger");
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("scavenger");
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
