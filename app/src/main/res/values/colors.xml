@@ -8,4 +8,6 @@
     <color name="amway_red">#D0103A</color>
     <color name="amway_red_light">#ED174C</color>
     <color name="splash_screen">#FFFFFF</color>
+    <color name="light_blue">#30A5E3</color>
+    <color name="light_grey">#858585</color>
 </resources>

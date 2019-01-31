@@ -29,4 +29,5 @@
     <string name="enable_NFC">Please Enable NFC to use this Feature</string>
     <string name="scavenger_earn">Earn:</string>
     <string name="sweepstakes_entry">Entry:</string>
+    <string name="text_points">POINTS</string>
 </resources>
