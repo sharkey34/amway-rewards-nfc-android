@@ -14,7 +14,6 @@ import com.example.ericsharkey.amwayrewards.R;
 
 public class NFCFragment extends Fragment {
 
-    // TODO: Implement NFC Reader.
 
     public static NFCFragment newInstance(){
         return new NFCFragment();
@@ -33,7 +32,6 @@ public class NFCFragment extends Fragment {
         if(getActivity() == null){
             return;
         }
-
         Bundle bundle = getArguments();
 
         if (bundle != null){

@@ -2,37 +2,37 @@ package com.example.ericsharkey.amwayrewards.Models;
 
 public class SweepstakeItem {
 
-    private String mTitle;
-    private String mDesc;
-    private String mItemImage;
-    private String mPoints;
-    private String mEntries;
+    private String title;
+    private String desc;
+    private String entry;
+    private String limit;
 
-    public SweepstakeItem(String mTitle, String mDesc, String mItemImage, String mPoints, String mEntries) {
-        this.mTitle = mTitle;
-        this.mDesc = mDesc;
-        this.mItemImage = mItemImage;
-        this.mPoints = mPoints;
-        this.mEntries = mEntries;
+    //    private String mItemImage;
+
+    // Empty Constructor for FireBase.
+    public SweepstakeItem(){
     }
 
-    public String getmTitle() {
-        return mTitle;
+    public SweepstakeItem(String title, String desc, String entry, String limit) {
+        this.title = title;
+        this.desc = desc;
+        this.entry = entry;
+        this.limit = limit;
     }
 
-    public String getmDesc() {
-        return mDesc;
+    public String getTitle() {
+        return title;
     }
 
-    public String getmItemImage() {
-        return mItemImage;
+    public String getDesc() {
+        return desc;
     }
 
-    public String getmPoints() {
-        return mPoints;
+    public String getEntry() {
+        return entry;
     }
 
-    public String getmEntries() {
-        return mEntries;
+    public String getLimit() {
+        return limit;
     }
 }

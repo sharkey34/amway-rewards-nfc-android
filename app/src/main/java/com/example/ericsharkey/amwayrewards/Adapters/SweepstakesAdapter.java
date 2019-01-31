@@ -48,7 +48,7 @@ public class SweepstakesAdapter extends BaseAdapter {
         SweepstakesViewHolder vh;
 
         if(convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.scavenger_item, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.sweepstakes_item, parent, false);
 
             vh = new SweepstakesViewHolder(convertView);
             convertView.setTag(vh);
@@ -58,25 +58,25 @@ public class SweepstakesAdapter extends BaseAdapter {
 
         SweepstakeItem item = (SweepstakeItem) getItem(position);
         if (item != null){
-            Glide.with(mContext).load(item.getmItemImage()).into(vh.mImage);
-            vh.mTitle.setText(item.getmTitle());
-            vh.mDesc.setText(item.getmDesc());
-            vh.mEntries.setText(item.getmEntries());
-            vh.mPoints.setText(item.getmPoints());
+//            Glide.with(mContext).load(item.getmItemImage()).into(vh.mImage);
+            vh.mTitle.setText(item.getTitle());
+            vh.mDesc.setText(item.getDesc());
+            vh.mEntries.setText(item.getLimit());
+            vh.mPoints.setText(item.getEntry());
         }
         return convertView;
     }
 
     // View Holder Class.
     static class SweepstakesViewHolder{
-        private final ImageView mImage;
+//        private final ImageView mImage;
         private final TextView mTitle;
         private final TextView mDesc;
         private final TextView mEntries;
         private final TextView mPoints;
 
         SweepstakesViewHolder(View _layout){
-            mImage =  _layout.findViewById(R.id.sweepstakes_image);
+//            mImage =  _layout.findViewById(R.id.sweepstakes_image);
             mTitle = _layout.findViewById(R.id.sweepstakes_title);
             mDesc = _layout.findViewById(R.id.sweepstakes_desc);
             mEntries = _layout.findViewById(R.id.sweepstakes_entries);

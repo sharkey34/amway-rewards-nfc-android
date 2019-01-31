@@ -35,7 +35,6 @@ public class LauncherActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-
         // TODO: Pull from shared preferences and see if the user has logged in
         // If logged in send to Rewards Page to login or send to main activity.
 

@@ -59,23 +59,23 @@ public class ScavengerAdapter extends BaseAdapter {
 
         ScavengerItem item = (ScavengerItem) getItem(position);
         if (item != null){
-            Glide.with(mContext).load(item.getmCategoryImageString()).into(vh.mImage);
-            vh.mTitle.setText(item.getmTitle());
-            vh.mDesc.setText(item.getmDesc());
-            vh.mPoints.setText(item.getmPoints());
+//            Glide.with(mContext).load(item.getmCategoryImageString()).into(vh.mImage);
+            vh.mTitle.setText(item.getTitle());
+            vh.mDesc.setText(item.getDesc());
+            vh.mPoints.setText(item.getPoints());
         }
         return convertView;
     }
 
     // View Holder Class.
     static class ScavengerViewHolder{
-        private final ImageView mImage;
+//        private final ImageView mImage;
         private final TextView mTitle;
         private final TextView mDesc;
         private final TextView mPoints;
 
         ScavengerViewHolder(View _layout){
-            mImage =  _layout.findViewById(R.id.scavenger_image);
+//            mImage =  _layout.findViewById(R.id.scavenger_image);
             mTitle = _layout.findViewById(R.id.scavenger_title);
             mDesc = _layout.findViewById(R.id.scavenger_desc);
             mPoints = _layout.findViewById(R.id.scavenger_point);

@@ -29,7 +29,6 @@ import java.io.UnsupportedEncodingException;
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
     private BottomNavigationView mNav;
-    private PendingIntent mPendingIntent;
     private NfcAdapter mNFCAdapter;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -84,8 +83,6 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                     messages[i] = (NdefMessage) rawMessages[i];
 
                 }
-                // TODO: Process the messages array.
-                Log.i("TAG", "onNewIntent: ");
                 // TODO: Currently only processing one.
                 parseMessage(messages[0]);
             }
@@ -96,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
 
     private void parseMessage(NdefMessage message) {
-
+        
         try {
             byte[] payload = message.getRecords()[0].getPayload();
 
@@ -144,11 +141,10 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
             if (!mNFCAdapter.isEnabled())
                 showWirelessSettings();
 
-            // TODO: New
-            mPendingIntent = PendingIntent.getActivity(this, 0,
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                     new Intent(this, this.getClass())
                             .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
-            mNFCAdapter.enableForegroundDispatch(this, mPendingIntent, null, null);
+            mNFCAdapter.enableForegroundDispatch(this, pendingIntent, null, null);
         }
     }
 

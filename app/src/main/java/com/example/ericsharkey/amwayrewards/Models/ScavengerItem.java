@@ -2,31 +2,29 @@ package com.example.ericsharkey.amwayrewards.Models;
 
 public class ScavengerItem {
 
-    private String mTitle;
-    private String mDesc;
-    private String mPoints;
-    private String mCategoryImageString;
+    private String title;
+    private String desc;
+    private String points;
 
-    public ScavengerItem(String mTitle, String mDesc, String mPoints, String mCategoryImageString) {
-        this.mTitle = mTitle;
-        this.mDesc = mDesc;
-        this.mPoints = mPoints;
-        this.mCategoryImageString = mCategoryImageString;
+    public ScavengerItem(String title, String desc, String points) {
+        this.title = title;
+        this.desc = desc;
+        this.points = points;
     }
 
-    public String getmTitle() {
-        return mTitle;
+    // Empty constructor for FireBase.
+    public ScavengerItem(){
     }
 
-    public String getmDesc() {
-        return mDesc;
+    public String getTitle() {
+        return title;
     }
 
-    public String getmPoints() {
-        return mPoints;
+    public String getDesc() {
+        return desc;
     }
 
-    public String getmCategoryImageString() {
-        return mCategoryImageString;
+    public String getPoints() {
+        return points;
     }
 }
