@@ -102,28 +102,4 @@ public class LauncherActivity extends AppCompatActivity {
         }
     }
 
-    // TODO: Put in a REPO and call in ViewModel.
-    private void signOut(){
-
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(LauncherActivity.this, R.string.sign_out, Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    // TODO: Put in a REPO and call in ViewModel.
-    private void deleteAccount(){
-
-        AuthUI.getInstance()
-                .delete(this)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(LauncherActivity.this, R.string.delete_acnt,Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
 }

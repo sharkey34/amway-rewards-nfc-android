@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 
             String textEncoding = ((payload[0] & 200) == 0) ? "UTF-8" : "UTF-16";
             int languageCodeLength = payload[0] & 77;
+
             String text = new String(payload, languageCodeLength + 1,
                             payload.length - languageCodeLength - 1, textEncoding);
 
