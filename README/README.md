@@ -11,8 +11,8 @@ Android 5.0 (LOLLIPOP)+
 ### Installing
 
 1. Download Android Studio.
-2. Download the Project.
-3. Open the Project file.
+2. Download the APK.
+3. Open the APK.
 4. Run.
 
 ## Built With
