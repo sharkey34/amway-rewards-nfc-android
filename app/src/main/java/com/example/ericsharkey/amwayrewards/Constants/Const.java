@@ -30,4 +30,11 @@ public class Const {
     public static final String SCANNER_TAG = "com.example.ericsharkey.amwayrewards.ScannerFragment";
     public static final String EXTRA_TITLE = "com.example.ericsharkey.amwayrewards.ScannerFragment.TITLE";
     public static final String EXTRA_POINTS = "com.example.ericsharkey.amwayrewards.ScannerFragment.POINTS";
+
+
+    // Web Fragment
+    public static final String WEB_EXTRA = "com.example.ericsharkey.amwayrewards.WebFragment.EXTRA";
+    public static final String WEB_TAG = "com.example.ericsharkey.amwayrewards.WebFragment";
+
+
 }

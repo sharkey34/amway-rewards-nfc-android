@@ -25,7 +25,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/amway_red_light"
-        android:text="none" />
+        />
 
     <TextView
         android:id="@+id/sweepstakes_limit"
@@ -35,7 +35,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="10dp"
         android:layout_toStartOf="@+id/sweepstakes_entries"
-        android:text="Limit"
+        android:text="@string/limit"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/amway_blue" />
 
@@ -43,6 +43,7 @@
         android:id="@+id/sweepstakes_image"
         android:layout_width="125dp"
         android:layout_height="125dp"
+        android:contentDescription="@string/content_desc"
         android:layout_alignStart="@+id/container_view"
         android:layout_alignTop="@+id/container_view"
         android:layout_marginStart="1dp"
@@ -58,7 +59,6 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="9dp"
         android:layout_toEndOf="@+id/sweepstakes_image"
-        android:text="TextView"
         android:textColor="@color/amway_blue"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -71,7 +71,6 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/sweepstakes_image"
-        android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
@@ -95,6 +94,5 @@
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/sweepstakes_entry"
         android:textColor="@color/amway_red_light"
-        android:text="500"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 </RelativeLayout>

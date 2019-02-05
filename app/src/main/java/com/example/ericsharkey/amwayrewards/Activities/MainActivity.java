@@ -20,13 +20,14 @@ import com.example.ericsharkey.amwayrewards.fragments.NFCFragment;
 import com.example.ericsharkey.amwayrewards.fragments.RewardsFragment;
 import com.example.ericsharkey.amwayrewards.fragments.ScavengerHuntFragment;
 import com.example.ericsharkey.amwayrewards.fragments.SweepstakesFragment;
+import com.example.ericsharkey.amwayrewards.fragments.WebFragment;
 import com.example.ericsharkey.amwayrewards.interfaces.MainInterface;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.io.UnsupportedEncodingException;
 
-public class MainActivity extends AppCompatActivity implements MainInterface {
+ public class MainActivity extends AppCompatActivity implements MainInterface {
 
     private BottomNavigationView mNav;
     private NfcAdapter mNFCAdapter;
@@ -65,9 +66,30 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, fragment,tag)
                 .commit();
+
     }
 
-    @Override
+     @Override
+     public void addWebView(String urlString) {
+
+         // TODO: change to add and add previous screen to backstack.
+
+         WebFragment webFragment = new WebFragment();
+
+         Bundle bundle = new Bundle();
+         bundle.putString(Const.WEB_EXTRA, urlString);
+
+         Log.i("TAG", "addWebView: " + urlString);
+
+         webFragment.setArguments(bundle);
+
+         getSupportFragmentManager().beginTransaction()
+                 .replace(R.id.frame, webFragment, Const.WEB_TAG)
+                 .commit();
+     }
+
+
+     @Override
     protected void onNewIntent(Intent intent) {
         handleIntent(intent);
     }

@@ -22,6 +22,7 @@
         android:layout_height="125dp"
         android:layout_alignStart="@+id/container_view"
         android:layout_alignTop="@+id/container_view"
+        android:contentDescription="@string/content_desc"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:scaleType="fitCenter"
@@ -35,7 +36,6 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/scavenger_image"
-        android:text="TextView"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@color/amway_blue"
@@ -49,7 +49,6 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="9dp"
         android:layout_toEndOf="@+id/scavenger_image"
-        android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
@@ -73,6 +72,5 @@
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/scavenger_earn"
         android:textColor="@color/amway_red_light"
-        android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 </RelativeLayout>
