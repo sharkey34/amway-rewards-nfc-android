@@ -1,9 +1,12 @@
 package com.example.ericsharkey.amwayrewards.Adapters;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ericsharkey.amwayrewards.Constants.Const;
@@ -57,7 +60,34 @@ public class SweepstakesAdapter extends BaseAdapter {
 
         SweepstakeItem item = (SweepstakeItem) getItem(position);
         if (item != null){
-//            Glide.with(mContext).load(item.getmItemImage()).into(vh.mImage);
+
+            Bitmap bitmap = null;
+
+            switch (item.getImageNum()){
+                case 0:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.lil_wayne);
+                    break;
+                case 1:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ticket_deal);
+                    break;
+                case 2:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.burger_meal);
+                    break;
+                case 3:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.backstage_pass);
+                    break;
+                case 4:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.pearl_jam);
+                    break;
+                case 5:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.freddie_mercury);
+                    break;
+                    default:
+                        break;
+            }
+
+
+            vh.mImage.setImageBitmap(bitmap);
             vh.mTitle.setText(item.getTitle());
             vh.mDesc.setText(item.getDesc());
             vh.mEntries.setText(item.getLimit());
@@ -68,14 +98,14 @@ public class SweepstakesAdapter extends BaseAdapter {
 
     // View Holder Class.
     static class SweepstakesViewHolder{
-//        private final ImageView mImage;
+        private final ImageView mImage;
         private final TextView mTitle;
         private final TextView mDesc;
         private final TextView mEntries;
         private final TextView mPoints;
 
         SweepstakesViewHolder(View _layout){
-//            mImage =  _layout.findViewById(R.id.sweepstakes_image);
+            mImage =  _layout.findViewById(R.id.sweepstakes_image);
             mTitle = _layout.findViewById(R.id.sweepstakes_title);
             mDesc = _layout.findViewById(R.id.sweepstakes_desc);
             mEntries = _layout.findViewById(R.id.sweepstakes_entries);

@@ -6,6 +6,7 @@ public class SweepstakeItem {
     private String desc;
     private String entry;
     private String limit;
+    private int imageNum;
 
     //    private String mItemImage;
 
@@ -13,11 +14,12 @@ public class SweepstakeItem {
     public SweepstakeItem(){
     }
 
-    public SweepstakeItem(String title, String desc, String entry, String limit) {
+    public SweepstakeItem(String title, String desc, String entry, String limit, int imageNum) {
         this.title = title;
         this.desc = desc;
         this.entry = entry;
         this.limit = limit;
+        this.imageNum = imageNum;
     }
 
     public String getTitle() {
@@ -34,5 +36,9 @@ public class SweepstakeItem {
 
     public String getLimit() {
         return limit;
+    }
+
+    public int getImageNum() {
+        return imageNum;
     }
 }
