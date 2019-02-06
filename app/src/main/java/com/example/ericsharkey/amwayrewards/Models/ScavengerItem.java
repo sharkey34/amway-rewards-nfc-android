@@ -5,15 +5,17 @@ public class ScavengerItem {
     private String title;
     private String desc;
     private String points;
+    private int category;
 
-    public ScavengerItem(String title, String desc, String points) {
+
+    public ScavengerItem(String title, String desc, String points, int category) {
         this.title = title;
         this.desc = desc;
         this.points = points;
+        this.category = category;
     }
 
-    // Empty constructor for FireBase.
-    public ScavengerItem(){
+    public ScavengerItem() {
     }
 
     public String getTitle() {
@@ -27,4 +29,9 @@ public class ScavengerItem {
     public String getPoints() {
         return points;
     }
+
+    public int getCategory() {
+        return category;
+    }
+
 }

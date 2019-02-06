@@ -1,12 +1,16 @@
 package com.example.ericsharkey.amwayrewards.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.ScavengerItem;
 import com.example.ericsharkey.amwayrewards.R;
@@ -58,7 +62,24 @@ public class ScavengerAdapter extends BaseAdapter {
 
         ScavengerItem item = (ScavengerItem) getItem(position);
         if (item != null){
-//            Glide.with(mContext).load(item.getmCategoryImageString()).into(vh.mImage);
+
+            Bitmap bitmap = null;
+            switch (item.getCategory()){
+                case 0:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.exit_icon);
+                    break;
+                case 1:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.clock_icon);
+                    break;
+                case 2:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.drink_icon);
+                    break;
+                case 3:
+                    bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.eat_icon);
+                default:
+                        break;
+            }
+            vh.mImage.setImageBitmap(bitmap);
             vh.mTitle.setText(item.getTitle());
             vh.mDesc.setText(item.getDesc());
             vh.mPoints.setText(item.getPoints());
@@ -72,9 +93,10 @@ public class ScavengerAdapter extends BaseAdapter {
         private final TextView mTitle;
         private final TextView mDesc;
         private final TextView mPoints;
+        private final ImageView mImage;
 
         ScavengerViewHolder(View _layout){
-//            mImage =  _layout.findViewById(R.id.scavenger_image);
+            mImage =  _layout.findViewById(R.id.scavenger_image);
             mTitle = _layout.findViewById(R.id.scavenger_title);
             mDesc = _layout.findViewById(R.id.scavenger_desc);
             mPoints = _layout.findViewById(R.id.scavenger_point);

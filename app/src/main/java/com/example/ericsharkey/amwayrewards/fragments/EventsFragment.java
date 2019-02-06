@@ -58,7 +58,7 @@ public class EventsFragment extends ListFragment implements EventTaskInterface {
 
     @Override
     public void onPostExecute(ArrayList<TicketmasterEvent> events) {
-        // TODO: add to adapter then to list.
+
         mEvents = events;
 
         EventAdapter adapter = new EventAdapter(getContext(), mEvents);
