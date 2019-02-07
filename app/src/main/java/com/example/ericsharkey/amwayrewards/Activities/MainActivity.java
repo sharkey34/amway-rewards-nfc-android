@@ -126,8 +126,7 @@ import java.io.UnsupportedEncodingException;
                             payload.length - languageCodeLength - 1, textEncoding);
 
             String[] item = text.split("/");
-
-            String title = item[0];
+            String title = item[0].substring(2);
             String points = item[1];
 
             NFCFragment fragment = NFCFragment.newInstance();
