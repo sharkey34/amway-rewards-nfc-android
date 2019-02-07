@@ -9,7 +9,10 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvent>> {
@@ -56,10 +59,16 @@ public class EventTask extends AsyncTask<Void,Void, ArrayList<TicketmasterEvent>
                 JSONArray images = event.getJSONArray("images");
 
                 String imageString = null;
-                if (images.length() >= 9) {
-                    // image string is getting the entire object
-                    JSONObject image = images.getJSONObject(8);
-                    imageString = image.getString("url");
+
+                for (int j = 0; j < images.length(); j++) {
+                    JSONObject image = images.getJSONObject(j);
+
+                    int width = image.getInt("width");
+
+                    if(width == 640){
+                        imageString = image.getString("url");
+                        break;
+                    }
                 }
 
                 JSONObject dates = event.getJSONObject("dates");

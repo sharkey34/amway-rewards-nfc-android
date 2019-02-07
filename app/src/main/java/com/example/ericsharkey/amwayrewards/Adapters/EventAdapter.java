@@ -1,15 +1,19 @@
 package com.example.ericsharkey.amwayrewards.Adapters;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.ericsharkey.amwayrewards.Constants.Const;
 import com.example.ericsharkey.amwayrewards.Models.TicketmasterEvent;
 import com.example.ericsharkey.amwayrewards.R;
+import com.facebook.FacebookActivity;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -63,6 +67,15 @@ public class EventAdapter extends BaseAdapter {
             vh.mTitle.setText(event.getmName());
             String eventDateTime = mContext.getString(R.string.date_time,event.getmLocalDate(),event.getmLocalTime());
             vh.mDateTime.setText(eventDateTime);
+            vh.mShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Share");
+                    mContext.startActivity(Intent.createChooser(shareIntent,"Share using"));
+                }
+            });
         }
         return convertView;
     }
@@ -72,8 +85,10 @@ public class EventAdapter extends BaseAdapter {
         private final ImageView mImage;
         private final TextView mDateTime;
         private final TextView mTitle;
+        private final ImageView mShare;
 
         ViewHolder(View _layout){
+            mShare = _layout.findViewById(R.id.share_btn);
             mImage =  _layout.findViewById(R.id.event_image);
             mTitle = _layout.findViewById(R.id.event_text);
             mDateTime = _layout.findViewById(R.id.date_time);
